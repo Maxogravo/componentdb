@@ -38,6 +38,7 @@ def list_components(all):
 
 while action != "bye":
     action = input("Enter action (add/remove/list/bye): ")
+
     match action:
         case "add":
             print("1. Add a new component")
@@ -52,16 +53,20 @@ while action != "bye":
                 id = int(input("Enter component id to replenish: "))
                 quantity = int(input("Enter quantity to add: "))
                 replenish_component(id, quantity)
+
         case "remove":
             id = int(input("Enter component id to remove: "))
             quantity = int(input("Enter quantity to remove: "))
             remove_component(id, quantity)
+
         case "list":
             components = list_components(False)
             for component in components:
                 print(component)
+
         case "bye":
             print("Goodbye!")
+            
         case _:
             print("Invalid action. Please try again.")
 
