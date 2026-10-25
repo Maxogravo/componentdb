@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 action = ""
 connection = sqlite3.connect("src/database.db")
@@ -37,7 +38,9 @@ def list_components(all):
 
 
 while action != "bye":
+    os.system('cls' if os.name == 'nt' else 'clear')
     action = input("Enter action (add/remove/list/bye): ")
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     match action:
         case "add":
@@ -55,6 +58,9 @@ while action != "bye":
                 replenish_component(id, quantity)
 
         case "remove":
+            components = list_components(False)
+            for component in components:
+                print(component)
             id = int(input("Enter component id to remove: "))
             quantity = int(input("Enter quantity to remove: "))
             remove_component(id, quantity)
@@ -63,6 +69,7 @@ while action != "bye":
             components = list_components(False)
             for component in components:
                 print(component)
+            input("Press Enter to return... ")
 
         case "bye":
             print("Goodbye!")
